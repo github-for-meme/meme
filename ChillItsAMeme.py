@@ -1,22 +1,36 @@
+import webbrowser
+
+
 class ChillItsAMeme:
     """
-    A class to demonstrate proper meme etiquette.
-
-    Variable Required Parameters
+    Description
     ----------
-      url : str
-          The url from the meme
-      msg : str
-          The string from the meme needed to get to the correct url
+        A class to demonstrate proper meme etiquette.
 
-    Static Parameter
-    -------
-      decoded_url : str
-          a full url to go see the Congratulation page from the meme
-          will always decode based on meme_decoder function
-      referenced_meme_url: str
-         the url to the meme being referenced
-         which happens to be the top post currently
+    Inputs
+    ----------
+        url : str
+            The url from the meme
+        msg : str
+            The string from the meme needed to get to the correct url
+
+    Static Parameters
+    ----------
+        decoded_url : str
+            a full url to go see the Congratulation page from the meme
+            will always decode based on meme_decoder function
+        referenced_meme_url: str
+            the url to the meme being referenced
+            which happens to be the top post currently
+
+    Static Methods
+    ----------
+        meme_decoder() -> str
+            A function to get the full url to go see the Congratulation page from the meme
+        go_to_decoded_url() -> None
+            A function to open the congratulations page in your web browser
+        go_to_original_meme() -> None
+            A function to open the original meme in your web browser
     """
 
     def __init__(self, url: str, msg: str) -> None:
@@ -28,17 +42,19 @@ class ChillItsAMeme:
 
     def meme_decoder(self) -> str:
         """
-        A function to get the full url to go see the Congratulation page from the meme
+        Description
+        ----------
+            A function to get the full url to go see the Congratulation page from the meme
 
         Parameters
         ----------
-          self : represents the instance of the class
+            self : represents the instance of the class
                 self is always pointing to Current Object.
-
+        
         Returns
         -------
-          decoded_url : str
-              a full url to go see the Congratulation page from the meme
+            decoded_url : str
+                a full url to go see the Congratulation page from the meme
         """
         # string to append to the end of the base url
         url_end: str = ''
@@ -56,9 +72,33 @@ class ChillItsAMeme:
         decoded_url: str = f"https://{self.url}/{url_end}/"  # properly format the url to return
         return decoded_url
 
+    def go_to_decoded_url(self) -> None:
+        """
+        Description
+        ----------
+            A function to open the congratulations page in your web browser
+
+        Parameters
+        ----------
+            self : represents the instance of the class
+                self is always pointing to Current Object.
+        """
+        webbrowser.open(self.decoded_url)
+
+    def go_to_original_meme(self) -> None:
+        """
+        Description
+        ----------
+            A function to open the original meme in your web browser
+
+        Parameters
+        ----------
+            self : represents the instance of the class
+                self is always pointing to Current Object.
+        """
+        webbrowser.open(self.referenced_meme_url)
+
 
 if __name__ == '__main__':
-    global_url: str = "www.multisoft.se"
-    global_msg: str = "1112031584"
-    meme = ChillItsAMeme(global_url, global_msg)
+    meme = ChillItsAMeme(url="www.multisoft.se", msg="1112031584")
     print("decoded_url: ", meme.decoded_url)
